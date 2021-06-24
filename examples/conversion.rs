@@ -2,7 +2,12 @@ use ascii_converter::*;
 
 fn main() {
 
-    let input = vec! [1001000, 1100101, 1101100, 1101100, 1101111, 100000, 1110111, 1101111, 1110010, 1101100, 1100100, 100001];
+    let mut input = String::new();
+    println!("Enter text: ");
+    std::io::stdin().read_line(&mut input).unwrap();
+    input.truncate(input.len() -1);
 
-    println!("{}", binary_to_string(&input).unwrap());
+    println!("* {} in Binary: {:?}", input, string_to_binary(&input).unwrap());
+    println!("* {} in Decimal: {:?}", input, string_to_decimals(&input).unwrap());
+
 }
