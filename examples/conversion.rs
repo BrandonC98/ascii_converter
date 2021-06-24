@@ -4,8 +4,11 @@ use std::io::*;
 fn main() {
 
     let mut name = String::new();
+    
     print!("Enter name: ");
-    stdout().flush();
+
+    stdout().flush().expect("unable to flush buffer");
+
     //reads user input and assigns it to the name variable
     stdin().read_line(&mut name).unwrap();
 
