@@ -1,9 +1,8 @@
- //! ## Description
 //! This project is a library for converting between different Ascii representations in the Rust language.
 //! This is made for Rust programs that need to convert an ascii value.
 //! This library has methods for converting any of the supported representations to any other another
 //! 
-//! 
+//! ---
 //! 
 //! each supported ascii representation has it's type listed below:
 //! 
@@ -13,11 +12,13 @@
 //! 
 //! - characters = `String`.
 //! 
-//! 
+//! ---
 //! 
 //! Each method uses the `Result` enum for the return type so this will need to be unwrapped to get the actual value.
 //! An example of how best to deal with the Results enum is below:
 //! ```
+//! use ascii_converter::*;
+//! 
 //! let input = vec![72, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100, 33];
 //!
 //! match decimals_to_string(&input){
@@ -39,10 +40,11 @@
 /// 
 /// # Example
 /// ```
+/// use ascii_converter::*;
 /// 
 /// let  expected = vec![72, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100, 33];
 ///    
-/// assert_eq!(ascii_converter::string_to_decimals("Hello world!"), Ok(expected));
+/// assert_eq!(string_to_decimals("Hello world!"), Ok(expected));
 /// ```
 pub fn  string_to_decimals(text: &str) -> Result<Vec<u8>, String>{   
 
@@ -69,11 +71,12 @@ pub fn  string_to_decimals(text: &str) -> Result<Vec<u8>, String>{
 /// 
 /// # Example
 /// ```
+/// use ascii_converter::*;
 /// 
 /// let  hello_world = vec![72, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100, 33];
 /// let expected = vec![1001000, 1100101, 1101100, 1101100, 1101111, 100000, 1110111, 1101111, 1110010, 1101100, 1100100, 100001];
 ///    
-/// assert_eq!(ascii_converter::decimals_to_binary(&hello_world), Ok(expected));
+/// assert_eq!(decimals_to_binary(&hello_world), Ok(expected));
 /// ```
 pub fn decimals_to_binary(dec_vec: &Vec<u8>) ->  Result<Vec<u32>, String>{
     
@@ -98,11 +101,12 @@ pub fn decimals_to_binary(dec_vec: &Vec<u8>) ->  Result<Vec<u32>, String>{
 /// 
 /// # Example
 /// ```
+/// use ascii_converter::*;
 /// 
 /// let hello_world = vec![1001000, 1100101, 1101100, 1101100, 1101111, 100000, 1110111, 1101111, 1110010, 1101100, 1100100, 100001];
 /// let  expected = vec![72, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100, 33];
 ///    
-/// assert_eq!(ascii_converter::binary_to_decimal(&hello_world), Ok(expected));
+/// assert_eq!(binary_to_decimal(&hello_world), Ok(expected));
 /// ```
 pub fn binary_to_decimal(bin_vec: &Vec<u32>) -> Result<Vec<u8>, String>{
 
@@ -132,9 +136,11 @@ pub fn binary_to_decimal(bin_vec: &Vec<u32>) -> Result<Vec<u8>, String>{
 /// 
 ///  # Example
 /// ```
+/// use ascii_converter::*;
+/// 
 /// let hello_world = vec![72, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100, 33];
 ///    
-/// assert_eq!(ascii_converter::decimals_to_string(&hello_world), Ok("Hello world!".to_string()));
+/// assert_eq!(decimals_to_string(&hello_world), Ok("Hello world!".to_string()));
 /// ```
 pub fn decimals_to_string(dec_vec: &Vec<u8>) -> Result<String, String>{
 
@@ -159,9 +165,11 @@ pub fn decimals_to_string(dec_vec: &Vec<u8>) -> Result<String, String>{
 /// 
 /// # Example
 /// ```
+/// use ascii_converter::*;
+/// 
 /// let expected = vec![1001000, 1100101, 1101100, 1101100, 1101111, 100000, 1110111, 1101111, 1110010, 1101100, 1100100, 100001];
 /// 
-/// assert_eq!(ascii_converter::string_to_binary("Hello world!"), Ok(expected));
+/// assert_eq!(string_to_binary("Hello world!"), Ok(expected));
 /// ```
 pub fn string_to_binary(text: &str) -> Result<Vec<u32>, String>{
 
@@ -190,9 +198,11 @@ pub fn string_to_binary(text: &str) -> Result<Vec<u32>, String>{
 /// 
 /// # Example
 /// ```
+/// use ascii_converter::*;
+/// 
 /// let input = vec! [1001000, 1100101, 1101100, 1101100, 1101111, 100000, 1110111, 1101111, 1110010, 1101100, 1100100, 100001];
 /// 
-/// assert_eq!(ascii_converter::binary_to_string(&input), Ok("Hello world!".to_string()));
+/// assert_eq!(binary_to_string(&input), Ok("Hello world!".to_string()));
 /// ```
  pub fn binary_to_string(bin: &Vec<u32>) -> Result<String, String>{
     
