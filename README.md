@@ -3,7 +3,7 @@
 ---
 
 ## Description
-This project is a library for converting between different Ascii representations in the Rust language. This is made for rust programs that need to convert an ascii value into another representation. 
+This project is a library for converting between different Ascii representations in the Rust language. This is made for Rust programs that need to convert an ascii value. This library has methods for converting any of the supported representations to any other another   
 
 Currently supported representations
 - Binary
@@ -32,17 +32,20 @@ below is a program that converts text to binary and decimal. this code can be fo
 
 ```rust
 use ascii_converter::*;
+use std::io::*;
 
 fn main() {
 
     let mut name = String::new();
-    println!("Enter name: ");
+    
+    print!("Enter name: ");
+
+    stdout().flush().expect("unable to flush buffer");
 
     //reads user input and assigns it to the name variable
-    std::io::stdin().read_line(&mut name).unwrap();
+    stdin().read_line(&mut name).unwrap();
 
-    //remove the /n from the end of name
-    name.truncate(name.len() -1);
+    let name = name.trim();
 
     //outputs the binary representation
     println!("* {} in Binary: {:?}", name, string_to_binary(&name).unwrap());
@@ -52,6 +55,10 @@ fn main() {
 
 }
 ```
+Running the code above will give you the output below 
+
+![Output](images/conversionOutput.jpg)
+
 ---
 
 ## License

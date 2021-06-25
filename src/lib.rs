@@ -1,9 +1,38 @@
+ //! ## Description
+//! This project is a library for converting between different Ascii representations in the Rust language.
+//! This is made for Rust programs that need to convert an ascii value.
+//! This library has methods for converting any of the supported representations to any other another
+//! 
+//! 
+//! 
+//! each supported ascii representation has it's type listed below:
+//! 
+//! - Binrary = `Vec<u32>`.
+//! 
+//! - Decimals = `Vec<u8>`.
+//! 
+//! - characters = `String`.
+//! 
+//! 
+//! 
+//! Each method uses the `Result` enum for the return type so this will need to be unwrapped to get the actual value.
+//! An example of how best to deal with the Results enum is below:
+//! ```
+//! let input = vec![72, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100, 33];
+//!
+//! match decimals_to_string(&input){
+//!     Ok(num) => println!("* Output: {}", num),
+//!     Err(e) => println!("* Error: {}", e),
+//! };
+//! ```
+//! 
+
 /// This function returns a string's decimal values
 /// 
 /// takes a string and finds the ascii decimal assciated with that character.
 /// each decimal is pushed into a `Vec<u8>` .
 /// 
-/// charcters inside the string should only be in the ascii range  of `32` - `126` . any other
+/// charcters inside the string should only be in the ascii range  of `32 - 126` . any other
 /// character will cause an error.
 /// 
 /// example of unsupported characters: `£` , `☢️` , `Æ`
@@ -31,12 +60,12 @@ pub fn  string_to_decimals(text: &str) -> Result<Vec<u8>, String>{
     Ok(vec)
 }
 
-/// This function returns a binary representations of a decimal numbers
+/// This function returns a binary representations of decimal numbers
 /// 
 /// this function takes a `Vec<u8>` , it's elements should represent ascii characters. 
 /// 
-/// An error will be thrown if the a value is above `126` . even though it's possible to be converted 
-/// this crate is made to be used for converting ascii characters to it's binary representation. 
+/// 
+/// An error will be thrown if the a value is above `126`. 
 /// 
 /// # Example
 /// ```
@@ -99,7 +128,7 @@ pub fn binary_to_decimal(bin_vec: &Vec<u32>) -> Result<Vec<u8>, String>{
 /// This function takes in a set of Decimal numbers and will return a string 
 /// 
 /// this function will takes a `Vec<u8>` and changes each element to a char then pushs it into a string.
-/// if a element  of the vec passed in is below 32 or above 126 which will cause an error to be thrown.
+/// if a element  of the vec passed in is below 32 or above 126 it will cause an error to be thrown.
 /// 
 ///  # Example
 /// ```
@@ -125,7 +154,7 @@ pub fn decimals_to_string(dec_vec: &Vec<u8>) -> Result<String, String>{
 
 /// returns the binary numbers of each letter passed in. 
 /// 
-/// This function converts each `char` of the `&str` passed in and converts it to a binary number which is represented
+/// This function takes each `char` of the `&str` passed in and converts it to a binary number which is represented
 /// as a `u32`. These are then pushed into a `Vec<u32>` and wrapped in a `Result` enum. 
 /// 
 /// # Example
