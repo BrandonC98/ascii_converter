@@ -59,7 +59,7 @@ fn main() {
 ```
 Running the code above will give you the output below 
 
-![Output](images/conversionOutput.jpg)
+![Output](images/ConversionOutput.jpg)
 
 ---
 
