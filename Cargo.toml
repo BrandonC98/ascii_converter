@@ -5,8 +5,10 @@ authors = ["Brandon Campbell <BrandonCampbell98@hotmail.co.uk>"]
 edition = "2018"
 
 description  = "A library for converting  between different ascii representations"
-homepage  =  ""
+keywords = ["ascii", "convert", "binary"]
+homepage  =  "https://github.com/BrandonC98/ascii-converter"
 documentation =  ""
 repository  = "https://github.com/BrandonC98/ascii-converter"
 readme = "README.md"
+license = "MIT"
 
