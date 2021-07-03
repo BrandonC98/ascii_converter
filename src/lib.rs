@@ -30,7 +30,7 @@
 
 /// This function returns a string's decimal values
 /// 
-/// takes a string and finds the ascii decimal assciated with that character.
+/// takes a string and finds the decimal assciated with that character according to the Ascii table.
 /// each decimal is pushed into a `Vec<u8>` .
 /// 
 /// charcters inside the string should only be in the ascii range  of `32 - 126` . any other
@@ -44,7 +44,7 @@
 /// 
 /// let  expected = vec![72, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100, 33];
 ///    
-/// assert_eq!(string_to_decimals("Hello world!"), Ok(expected));
+/// assert_eq!(string_to_decimals("Hello world!").unwrap(), expected);
 /// ```
 pub fn  string_to_decimals(text: &str) -> Result<Vec<u8>, String>{   
 
@@ -65,9 +65,7 @@ pub fn  string_to_decimals(text: &str) -> Result<Vec<u8>, String>{
 /// This function returns a binary representations of decimal numbers
 /// 
 /// this function takes a `Vec<u8>` , it's elements should represent ascii characters. 
-/// 
-/// 
-/// An error will be thrown if the a value is above `126`. 
+/// An error will be thrown if the a value is above `126` as this is the end of the ascii range. 
 /// 
 /// # Example
 /// ```
@@ -76,7 +74,7 @@ pub fn  string_to_decimals(text: &str) -> Result<Vec<u8>, String>{
 /// let  hello_world = vec![72, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100, 33];
 /// let expected = vec![1001000, 1100101, 1101100, 1101100, 1101111, 100000, 1110111, 1101111, 1110010, 1101100, 1100100, 100001];
 ///    
-/// assert_eq!(decimals_to_binary(&hello_world), Ok(expected));
+/// assert_eq!(decimals_to_binary(&hello_world).unwrap(), expected);
 /// ```
 pub fn decimals_to_binary(dec_vec: &Vec<u8>) ->  Result<Vec<u32>, String>{
     
@@ -93,10 +91,9 @@ pub fn decimals_to_binary(dec_vec: &Vec<u8>) ->  Result<Vec<u32>, String>{
     Ok(binary)
 }
 
-/// This function takes in binary numbers and will return the decimal numbers 
+/// This function takes in binary numbers and will return the decimal version.
 /// 
-/// this function takes a `Vec<u8>` , it's elements should represent Binary values. 
-/// 
+/// This function takes a `Vec<u8>`, it's elements should represent binary values.  
 /// if a value passed in contains a digit that  isn't `1` or `0` an error will be thrown.
 /// 
 /// # Example
@@ -106,7 +103,7 @@ pub fn decimals_to_binary(dec_vec: &Vec<u8>) ->  Result<Vec<u32>, String>{
 /// let hello_world = vec![1001000, 1100101, 1101100, 1101100, 1101111, 100000, 1110111, 1101111, 1110010, 1101100, 1100100, 100001];
 /// let  expected = vec![72, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100, 33];
 ///    
-/// assert_eq!(binary_to_decimal(&hello_world), Ok(expected));
+/// assert_eq!(binary_to_decimal(&hello_world).unwrap(), expected);
 /// ```
 pub fn binary_to_decimal(bin_vec: &Vec<u32>) -> Result<Vec<u8>, String>{
 
@@ -129,18 +126,18 @@ pub fn binary_to_decimal(bin_vec: &Vec<u32>) -> Result<Vec<u8>, String>{
     Ok(decimals)
 }
 
-/// This function takes in a set of Decimal numbers and will return a string 
+/// This function takes in Decimal numbers and will return the string they represent 
 /// 
-/// this function will takes a `Vec<u8>` and changes each element to a char then pushs it into a string.
-/// if a element  of the vec passed in is below 32 or above 126 it will cause an error to be thrown.
+/// this function will takes a `Vec<u8>` and changes each element to a `char` then pushs it into a string.
+/// if a element of the vec passed in is below 32 or above 126 it will cause an error to be thrown.
 /// 
-///  # Example
+/// # Example
 /// ```
 /// use ascii_converter::*;
 /// 
 /// let hello_world = vec![72, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100, 33];
 ///    
-/// assert_eq!(decimals_to_string(&hello_world), Ok("Hello world!".to_string()));
+/// assert_eq!(decimals_to_string(&hello_world).unwrap(), "Hello world!".to_string());
 /// ```
 pub fn decimals_to_string(dec_vec: &Vec<u8>) -> Result<String, String>{
 
@@ -158,10 +155,10 @@ pub fn decimals_to_string(dec_vec: &Vec<u8>) -> Result<String, String>{
     Ok(text)
 }
 
-/// returns the binary numbers of each letter passed in. 
+/// This function returns the binary numbers of each letter passed in. 
 /// 
 /// This function takes each `char` of the `&str` passed in and converts it to a binary number which is represented
-/// as a `u32`. These are then pushed into a `Vec<u32>` and wrapped in a `Result` enum. 
+/// as a `u32`. These are then pushed into a `Vec<u32>`. 
 /// 
 /// # Example
 /// ```
@@ -169,7 +166,7 @@ pub fn decimals_to_string(dec_vec: &Vec<u8>) -> Result<String, String>{
 /// 
 /// let expected = vec![1001000, 1100101, 1101100, 1101100, 1101111, 100000, 1110111, 1101111, 1110010, 1101100, 1100100, 100001];
 /// 
-/// assert_eq!(string_to_binary("Hello world!"), Ok(expected));
+/// assert_eq!(string_to_binary("Hello world!").unwrap(), expected);
 /// ```
 pub fn string_to_binary(text: &str) -> Result<Vec<u32>, String>{
 
@@ -191,10 +188,10 @@ pub fn string_to_binary(text: &str) -> Result<Vec<u32>, String>{
 
 }
 
-/// returns a string made from the binary values passed to it.
+/// This function returns a string made from the binary values passed to it.
 /// 
 /// This function will take a `Vec<u32>`, each `u32` element will be converted to
-/// its character value and then are return as a string which is wrapped in the `Result` enum.
+/// its a `char` value and then return as a `string`.
 /// 
 /// # Example
 /// ```
@@ -202,7 +199,7 @@ pub fn string_to_binary(text: &str) -> Result<Vec<u32>, String>{
 /// 
 /// let input = vec! [1001000, 1100101, 1101100, 1101100, 1101111, 100000, 1110111, 1101111, 1110010, 1101100, 1100100, 100001];
 /// 
-/// assert_eq!(binary_to_string(&input), Ok("Hello world!".to_string()));
+/// assert_eq!(binary_to_string(&input).unwrap(), "Hello world!".to_string());
 /// ```
  pub fn binary_to_string(bin: &Vec<u32>) -> Result<String, String>{
     
@@ -256,7 +253,7 @@ mod tests{
         }
 
         #[test]
-        fn string_to_decimals_test_happy_none_alphebtical(){
+        fn string_to_decimals_test_happy_none_alphabetical(){
     
             let  expected = vec![49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 32, 33, 36, 37, 94, 38, 42,
              40, 41, 45, 95, 61, 43, 123, 125, 91, 93, 59, 58, 64, 39, 126, 35, 60, 44, 46, 62, 47, 63];
@@ -264,9 +261,9 @@ mod tests{
             
             assert_eq!(string_to_decimals("1234567890 !$%^&*()-_=+{}[];:@'~#<,.>/?"), Ok(expected));
         }
-
+        
         #[test]
-        fn string_to_decimals_test_happy_alphebtical(){
+        fn string_to_decimals_test_happy_alphabetical(){
     
             let  expected = vec![113, 119, 101, 114, 116, 121, 117, 105, 111, 112, 97, 115, 100, 102, 103,
              104, 106, 107, 108, 122, 120, 99, 118, 98, 110, 109, 81, 87, 69, 82, 84, 89, 85, 73, 79, 80,
