@@ -65,5 +65,5 @@ Running the code above will give you the output below
 
 ## License
 
-[MIT](LICENSE)
+[MIT](LICENSE.md)
 
