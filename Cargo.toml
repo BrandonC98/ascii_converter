@@ -6,6 +6,7 @@ edition = "2018"
 
 description  = "A library for converting  between different ascii representations"
 keywords = ["ascii", "convert", "binary"]
+exclude = [".vscode/*"]
 homepage  =  "https://github.com/BrandonC98/ascii-converter"
 documentation =  ""
 repository  = "https://github.com/BrandonC98/ascii-converter"
