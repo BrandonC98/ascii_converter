@@ -9,6 +9,7 @@ keywords = ["ascii", "convert", "binary"]
 exclude = [".vscode/*"]
 homepage  =  "https://github.com/BrandonC98/ascii_converter"
 repository  = "https://github.com/BrandonC98/ascii_converter"
+documentation = "https://docs.rs/ascii_converter/0.1.1/ascii_converter/"
 readme = "README.md"
 license = "MIT"
 

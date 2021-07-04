@@ -12,7 +12,7 @@ Currently supported representations
 - Decimal
 - Characters
 
-Full Documentation for this library can be found [here]()
+Full Documentation for this library can be found [here](https://docs.rs/ascii_converter/0.1.1/ascii_converter/)
 
 ---
 
