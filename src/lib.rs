@@ -47,6 +47,23 @@ pub fn decimal_to_hexadecimal(decimal: Vec<u8>) -> Result<Vec<String>, String>{
     
 }
 
+ pub fn hexadecimal_to_decimal(hexadecimals: Vec<String>) -> Result<Vec<u32>, String>{
+
+    let mut binary = Vec::new();
+
+    for i in hexadecimals.iter() {
+
+        match hex_to_dec(i) {
+            Ok(d) => (binary.push(d)),
+            Err(e) => return Err(e.to_string()),
+        };
+        
+    };
+
+    return Ok(binary);
+    
+ }
+
 /// This function returns a string's decimal values
 /// 
 /// takes a string and finds the decimal assciated with that character according to the Ascii table.
@@ -65,7 +82,7 @@ pub fn decimal_to_hexadecimal(decimal: Vec<u8>) -> Result<Vec<String>, String>{
 ///    
 /// assert_eq!(string_to_decimals("Hello world!").unwrap(), expected);
 /// ```
-pub fn  string_to_decimals(text: &str) -> Result<Vec<u8>, String>{   
+pub fn string_to_decimals(text: &str) -> Result<Vec<u8>, String>{   
 
     let mut vec = Vec::new();
 
@@ -260,8 +277,33 @@ pub fn string_to_binary(text: &str) -> Result<Vec<u32>, String>{
 
 }
 
+pub fn hex_to_dec(hex: &String) ->  Result<u32, String> {
+
+    match u32::from_str_radix(&hex, 16){
+        Ok(dec) => Ok(dec),
+        Err(e) => Err(e.to_string()),
+    }
+    
+
+}
+
 #[cfg(test)]
 mod tests{
+
+    mod hexadecimal_to_decimal_tests{
+
+        use super::super::*;
+
+        #[test]
+        fn hexadecimal_to_decimal_test_happy_path(){
+
+            let input = vec!["68".to_string(), "65".to_string(), "6C".to_string(), "6C".to_string() , "6F".to_string()];
+            let  expected = vec![104, 101, 108, 108, 111];
+
+            assert_eq!(hexadecimal_to_decimal(input), Ok(expected));
+
+        }
+    }
 
     mod decimal_to_hexadecimal_tests{
 
