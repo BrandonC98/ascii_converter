@@ -27,7 +27,25 @@
 //! };
 //! ```
 
-//pub fn decimal_to_hexadecimal(decimal: &Vec<u32>) -> Result<Vec<u8>, String>{}
+pub fn decimal_to_hexadecimal(decimal: Vec<u8>) -> Result<Vec<String>, String>{
+
+
+     let mut vec = Vec::new();
+
+     for i in decimal.iter() {
+
+
+        if i > &126 {
+            return Err("this function doesn't support values over 126".to_string());
+        }
+        
+        vec.push(dec_to_hex(*i));
+
+    };
+
+    Ok(vec)
+    
+}
 
 /// This function returns a string's decimal values
 /// 
@@ -221,7 +239,7 @@ pub fn string_to_binary(text: &str) -> Result<Vec<u32>, String>{
       return string;
  }
 
- pub fn dec_to_hex(dec: u8) -> String{
+ fn dec_to_hex(dec: u8) -> String{
     format!("{:X}", dec)
 
  }
@@ -245,15 +263,33 @@ pub fn string_to_binary(text: &str) -> Result<Vec<u32>, String>{
 #[cfg(test)]
 mod tests{
 
-    mod dec_to_hex_tests{
+    mod decimal_to_hexadecimal_tests{
 
         use super::super::*;
+
+        #[test]
+        fn decimal_to_hexadecimal_test_happy_path(){
+
+            let  input = vec![104, 101, 108, 108, 111];
+            let expected = vec!["68".to_string(), "65".to_string(), "6C".to_string(), "6C".to_string() , "6F".to_string()];
+
+            assert_eq!(decimal_to_hexadecimal(input), Ok(expected));
+
+
+        }
+
+        #[test]
+        fn decimal_to_hexadecimal_test_unhappy_path(){
+            let  input = vec![127];
+            
+            assert_eq!(decimal_to_hexadecimal(input), Err("this function doesn't support values over 126".to_string()));
+        }
 
         #[test]
         fn dec_to_hex_test_happy_path(){
             let expected = "A";
 
-            assert_eq!(dec_to_hex(10), "A");
+            assert_eq!(dec_to_hex(10), expected);
         }
 
     }
