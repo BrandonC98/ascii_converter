@@ -26,7 +26,8 @@
 //!     Err(e) => println!("* Error: {}", e),
 //! };
 //! ```
-//! 
+
+//pub fn decimal_to_hexadecimal(decimal: &Vec<u32>) -> Result<Vec<u8>, String>{}
 
 /// This function returns a string's decimal values
 /// 
@@ -220,6 +221,11 @@ pub fn string_to_binary(text: &str) -> Result<Vec<u32>, String>{
       return string;
  }
 
+ pub fn dec_to_hex(dec: u8) -> String{
+    format!("{:X}", dec)
+
+ }
+
 
  fn dec_to_bit(dec: u8) -> u32 {
     let n = &format!("{:b}", dec);
@@ -238,6 +244,19 @@ pub fn string_to_binary(text: &str) -> Result<Vec<u32>, String>{
 
 #[cfg(test)]
 mod tests{
+
+    mod dec_to_hex_tests{
+
+        use super::super::*;
+
+        #[test]
+        fn dec_to_hex_test_happy_path(){
+            let expected = "A";
+
+            assert_eq!(dec_to_hex(10), "A");
+        }
+
+    }
     
     mod string_to_decimal_tests{
 
