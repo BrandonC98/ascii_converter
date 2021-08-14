@@ -27,7 +27,6 @@
 //! };
 //! ```
 
-use std::fmt::Result;
 
 pub fn decimal_to_hexadecimal(decimal: Vec<u8>) -> Result<Vec<String>, String>{
 
@@ -81,7 +80,20 @@ pub fn decimal_to_hexadecimal(decimal: Vec<u8>) -> Result<Vec<String>, String>{
 
  }
 
+ pub fn binary_to_hexadecimal(bin: &Vec<u32>) -> Result<Vec<String>, String> {
+    let mut hexadecimal = Vec::new();
 
+    for i in bin.iter() {
+        match bits_to_dec(i) {
+            Ok(d) => hexadecimal.push(dec_to_hex(d )),
+            Err(e) => return Err(e),
+            
+        }
+    };
+
+    Ok(hexadecimal)
+
+}
 
 /// This function returns a string's decimal values
 /// 
@@ -309,7 +321,31 @@ pub fn hex_to_dec(hex: &String) ->  Result<u8, String> {
 #[cfg(test)]
 mod tests{
 
-    mod hexadecimal_to_binary{
+    mod binary_to_hexadecimal_tests{
+        use super::super::*;
+
+        #[test]
+        fn binary_to_hexadecimal_test_happy_path() {
+
+            let input = vec![1101000, 1100101, 1101100, 1101100, 1101111];
+            let expected = vec!["68".to_string(), "65".to_string(), "6C".to_string(), "6C".to_string() , "6F".to_string()];
+
+            assert_eq!(binary_to_hexadecimal(&input), Ok(expected));
+
+        }
+
+        #[test]
+        fn binary_to_hexadecimal_test_unhappy_path() {
+
+            let input = vec![86, 1100101, 1101100, 1101100, 1101111];
+
+            assert_eq!(binary_to_hexadecimal(&input), Err("error".to_string()));
+
+        }
+
+    }
+
+    mod hexadecimal_to_binary_tests{
         use super::super::*;
 
         #[test]
