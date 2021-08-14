@@ -95,6 +95,22 @@ pub fn decimal_to_hexadecimal(decimal: Vec<u8>) -> Result<Vec<String>, String>{
 
 }
 
+pub fn string_to_hexadecimal(text: String)  -> Result<Vec<String>, String> {
+    let mut hexadecimal = Vec::new();
+
+    for c in text.chars(){
+
+        if !c.is_ascii() {
+            return Err("A character in the string isn't apart of the ascii table".to_string());
+        }
+
+        hexadecimal.push(dec_to_hex(c as u8));
+    }
+
+    Ok(hexadecimal)
+
+}
+
 /// This function returns a string's decimal values
 /// 
 /// takes a string and finds the decimal assciated with that character according to the Ascii table.
@@ -320,6 +336,28 @@ pub fn hex_to_dec(hex: &String) ->  Result<u8, String> {
 
 #[cfg(test)]
 mod tests{
+
+    mod string_to_hexadecimal_tests {
+        use super::super::*;
+
+        #[test]
+        fn string_to_hexadecimal_test_happy_path() {
+            let input = "hello".to_string();
+            let expected = vec!["68".to_string(), "65".to_string(), "6C".to_string(), "6C".to_string() , "6F".to_string()];
+
+            assert_eq!(string_to_hexadecimal(input), Ok(expected));
+
+        }
+
+        #[test]
+        fn string_to_hexadecimal_test_unhappy_path() {
+            let input = "☢️".to_string();
+
+            assert_eq!(string_to_hexadecimal(input), Err("A character in the string isn't apart of the ascii table".to_string()));
+
+        }
+
+    }
 
     mod binary_to_hexadecimal_tests{
         use super::super::*;
