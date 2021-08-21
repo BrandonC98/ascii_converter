@@ -55,7 +55,7 @@ pub fn decimal_to_hexadecimal(decimal: Vec<u8>) -> Result<Vec<String>, String>{
 
         match hex_to_dec(i) {
             Ok(d) => (decimal.push(d)),
-            Err(e) => return Err(e.to_string()),
+            Err(e) => return Err(e),
         };
         
     };
@@ -71,7 +71,7 @@ pub fn decimal_to_hexadecimal(decimal: Vec<u8>) -> Result<Vec<String>, String>{
 
         match hex_to_dec(i) {
             Ok(d) =>  binary.push(dec_to_bit(d)),
-            Err(e) => return Err(e.to_string()),
+            Err(e) => return Err(e),
         };
 
     };
@@ -108,6 +108,23 @@ pub fn string_to_hexadecimal(text: String)  -> Result<Vec<String>, String> {
     }
 
     Ok(hexadecimal)
+
+}
+
+pub fn hexadecimal_to_string(hexadecimals: Vec<String>) -> Result<String, String> {
+    let mut text = String::new();
+
+    for i in hexadecimals.iter() {
+
+        match hex_to_dec(i) {
+            Ok(dec) => text.push(dec as char),
+            Err(e) => return Err(e.to_string()),
+            
+        }
+
+    };
+
+    Ok(text)
 
 }
 
@@ -202,7 +219,7 @@ pub fn binary_to_decimal(bin_vec: &Vec<u32>) -> Result<Vec<u8>, String>{
 
         match bits_to_dec(b) {
             Ok(t) => (decimals.push(t)),
-            Err(_) => return Err("FAIL".to_string()),
+            Err(e) => return Err(e),
         };
     }
 
@@ -319,7 +336,7 @@ pub fn string_to_binary(text: &str) -> Result<Vec<u32>, String>{
 
     match u8::from_str_radix(&bit.to_string(), 2) {
         Ok(dec) => Ok(dec),
-        Err(_) => Err("error".to_string()),
+        Err(e) => Err(e.to_string()),
     }
 
 }
@@ -336,6 +353,30 @@ pub fn hex_to_dec(hex: &String) ->  Result<u8, String> {
 
 #[cfg(test)]
 mod tests{
+
+    mod hexadecimal_to_string_tests {
+        use super::super::*;
+
+        #[test]
+        fn hexadecimal_to_string_test_happy_path(){
+           
+            let input = vec!["68".to_string(), "65".to_string(), "6C".to_string(), "6C".to_string() , "6F".to_string()];
+            let expected = "hello".to_string();
+
+            assert_eq!(hexadecimal_to_string(input), Ok(expected));
+
+        }
+
+        #[test]
+        fn hexadecimal_to_string_test_unhappy_path(){
+           
+            let input = vec!["6rtdfg8".to_string(), "65".to_string(), "6C".to_string(), "6C".to_string() , "6F".to_string()];
+
+            assert_eq!(hexadecimal_to_string(input), Err("invalid digit found in string".to_string()));
+
+        }
+
+    }
 
     mod string_to_hexadecimal_tests {
         use super::super::*;
@@ -377,7 +418,7 @@ mod tests{
 
             let input = vec![86, 1100101, 1101100, 1101100, 1101111];
 
-            assert_eq!(binary_to_hexadecimal(&input), Err("error".to_string()));
+            assert_eq!(binary_to_hexadecimal(&input), Err("invalid digit found in string".to_string()));
 
         }
 
