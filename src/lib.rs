@@ -95,6 +95,38 @@ pub fn decimal_to_hexadecimal(decimal: Vec<u8>) -> Result<Vec<String>, String>{
 
 }
 
+/// This function returns a hexadecimal that represents the string input
+///
+/// Takes in a 'String' and will convert each character to its hexadecimal number.
+/// the output is returned ina 'Vec<String>'.
+/// 
+/// if the input string contains a charcter not found in the ascii table an error will be thrown.
+///
+/// # Example
+/// ```
+///
+/// use ascii_converter::*;
+/// 
+/// let input = "Hello World!".to_string();
+///
+/// let expected = vec![
+///    "48".to_string(),
+///    "65".to_string(),
+///    "6C".to_string(),
+///    "6C".to_string(),
+///    "6F".to_string(),
+///    "20".to_string(),
+///    "57".to_string(),
+///    "6F".to_string(),
+///    "72".to_string(),
+///    "6C".to_string(),
+///    "64".to_string(),
+///    "21".to_string()
+///    ];
+/// 
+/// assert_eq!(string_to_hexadecimal(input).unwrap(), expected);
+///
+/// ```
 pub fn string_to_hexadecimal(text: String)  -> Result<Vec<String>, String> {
     let mut hexadecimal = Vec::new();
 
@@ -111,6 +143,36 @@ pub fn string_to_hexadecimal(text: String)  -> Result<Vec<String>, String> {
 
 }
 
+/// This function returns a hexadecimal number's string representation
+/// 
+/// takes in a 'Vec<String>' and converts each element to a character then places them in a string.
+///
+/// any string passed in via the parameters should be a valid hexadecimal number, if not a error will
+/// be returned in the 'Results' enum
+///
+/// # Example
+/// ```
+/// use ascii_converter::*;
+/// 
+/// let input = vec![
+///    "48".to_string(),
+///    "65".to_string(),
+///    "6C".to_string(),
+///    "6C".to_string(),
+///    "6F".to_string(),
+///    "20".to_string(),
+///    "57".to_string(),
+///    "6f".to_string(),
+///    "72".to_string(),
+///    "6c".to_string(),
+///    "64".to_string(),
+///    "21".to_string()
+///    ];
+///
+/// assert_eq!(hexadecimal_to_string(input).unwrap(), "Hello World!".to_string());
+/// 
+/// ```
+///
 pub fn hexadecimal_to_string(hexadecimals: Vec<String>) -> Result<String, String> {
     let mut text = String::new();
 
@@ -131,7 +193,7 @@ pub fn hexadecimal_to_string(hexadecimals: Vec<String>) -> Result<String, String
 /// This function returns a string's decimal values
 /// 
 /// takes a string and finds the decimal assciated with that character according to the Ascii table.
-/// each decimal is pushed into a `Vec<u8>` .
+/// each decimal is pushed into a `Vec<u8>`.
 /// 
 /// charcters inside the string should only be in the ascii range  of `32 - 126` . any other
 /// character will cause an error.
