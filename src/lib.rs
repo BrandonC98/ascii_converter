@@ -80,6 +80,39 @@ pub fn decimal_to_hexadecimal(decimal: Vec<u8>) -> Result<Vec<String>, String>{
 
  }
 
+ /// This function changes the binary number passed into hexadecimal number
+ ///
+ /// This function takes a '&Vec<u32>' where each element should be a binary number.
+ /// the input is converted to hexadecimal numbers and returned in the form of 'Vec<String>'
+ ///
+ /// If the number passed in isn't a '1' or '0' an error will be throw
+ ///
+ /// # Example
+ /// ```
+ ///
+ /// use ascii_converter::*;
+ /// 
+ /// let input = vec! [1001000, 1100101, 1101100, 1101100, 1101111, 100000, 1110111, 1101111, 1110010, 1101100, 1100100, 100001];
+ ///
+ /// let expected = vec![
+ ///    "48".to_string(),
+ ///    "65".to_string(),
+ ///    "6C".to_string(),
+ ///    "6C".to_string(),
+ ///    "6F".to_string(),
+ ///    "20".to_string(),
+ ///    "77".to_string(),
+ ///    "6F".to_string(),
+ ///    "72".to_string(),
+ ///    "6C".to_string(),
+ ///    "64".to_string(),
+ ///    "21".to_string()
+ ///    ];
+ ///
+ /// assert_eq!(binary_to_hexadecimal(&input).unwrap(), expected)
+ /// 
+ /// ```
+ ///
  pub fn binary_to_hexadecimal(bin: &Vec<u32>) -> Result<Vec<String>, String> {
     let mut hexadecimal = Vec::new();
 
