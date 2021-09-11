@@ -47,6 +47,38 @@ pub fn decimal_to_hexadecimal(decimal: Vec<u8>) -> Result<Vec<String>, String>{
     
 }
 
+/// This function takes a hexadecimal number and returns the decimal number.
+///
+/// This function takes a 'Vec<String>' to act as set of hexadecimal numbers.
+/// the function converts the input to decimal numbers.
+///
+/// If the number passed in isn't a valid hexadecimal number an error will be thrown.
+///
+/// # Example
+/// ```
+///
+/// use ascii_converter::*;
+///
+/// let input = vec![
+///    "48".to_string(),
+///    "65".to_string(),
+///    "6C".to_string(),
+///    "6C".to_string(),
+///    "6F".to_string(),
+///    "20".to_string(),
+///    "77".to_string(),
+///    "6F".to_string(),
+///    "72".to_string(),
+///    "6C".to_string(),
+///    "64".to_string(),
+///    "21".to_string()
+/// ];
+///
+/// let expected = vec![72, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100, 33];
+///
+/// assert_eq!(hexadecimal_to_decimal(input).unwrap(), expected); 
+///
+/// ```
  pub fn hexadecimal_to_decimal(hexadecimals: Vec<String>) -> Result<Vec<u8>, String>{
 
     let mut decimal: Vec<u8> = Vec::new();
