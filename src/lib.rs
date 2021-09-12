@@ -10,7 +10,9 @@
 //! 
 //! - Decimals = `Vec<u8>`.
 //! 
-//! - characters = `String`.
+//! - Characters = `String`.
+//!
+//! - Hexadecimals = `Vec<String>`.
 //! 
 //! ---
 //! 
@@ -27,7 +29,37 @@
 //! };
 //! ```
 
-
+/// This function is passed decimal numbers and it then returns the hexadecimal representation. 
+///
+/// Takes in a `Vec<u8>` where each value is a ascii values decimal number then will convert that to hexadecimal numbers which are returned as `Vec<String>`.
+///
+/// If a number passed in is above `126` an error will be thrown.
+///
+/// # Example
+/// ```
+/// 
+/// use ascii_converter::*;
+/// 
+/// let input = vec![72, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100, 33];
+///
+/// let expected = vec![
+///    "48".to_string(),
+///    "65".to_string(),
+///    "6C".to_string(),
+///    "6C".to_string(),
+///    "6F".to_string(),
+///    "20".to_string(),
+///    "77".to_string(),
+///    "6F".to_string(),
+///    "72".to_string(),
+///    "6C".to_string(),
+///    "64".to_string(),
+///    "21".to_string()
+/// ];
+///
+/// assert_eq!(decimal_to_hexadecimal(input).unwrap(), expected);
+///
+/// ```
 pub fn decimal_to_hexadecimal(decimal: Vec<u8>) -> Result<Vec<String>, String>{
 
     let mut vec = Vec::new();
@@ -49,8 +81,8 @@ pub fn decimal_to_hexadecimal(decimal: Vec<u8>) -> Result<Vec<String>, String>{
 
 /// This function takes a hexadecimal number and returns the decimal number.
 ///
-/// This function takes a 'Vec<String>' to act as set of hexadecimal numbers.
-/// the function converts the input to decimal numbers.
+/// This function takes a `Vec<String>` to act as set of hexadecimal numbers.
+/// the function converts the input to a set of decimal numbers in the form of `Vec<u8>`.
 ///
 /// If the number passed in isn't a valid hexadecimal number an error will be thrown.
 ///
@@ -96,10 +128,10 @@ pub fn decimal_to_hexadecimal(decimal: Vec<u8>) -> Result<Vec<String>, String>{
     
  }
 
- /// This function takes in a hexadecimal number then returns the binary version
+ /// This function takes in a hexadecimal number then returns the binary version.
  ///
- /// This function takes a 'Vec<String>', each element should be a hexadecimal number.
- /// the value passed in will be converted to binary and returned as a 'Vec<u32>'.
+ /// This function takes a `Vec<String>`, each element should be a hexadecimal number.
+ /// the value passed in will be converted to binary and returned as a `Vec<u32>`.
  ///
  /// Throws error if a invalid character is passed to the function.
  ///
@@ -144,12 +176,12 @@ pub fn decimal_to_hexadecimal(decimal: Vec<u8>) -> Result<Vec<String>, String>{
 
  }
 
- /// This function changes the binary number passed into hexadecimal number
+ /// This function changes the binary number passed into a hexadecimal value.
  ///
- /// This function takes a '&Vec<u32>' where each element should be a binary number.
- /// the input is converted to hexadecimal numbers and returned in the form of 'Vec<String>'
+ /// This function takes a `&Vec<u32>` where each element should be a binary number.
+ /// the input is converted to hexadecimal numbers and returned in the form of `Vec<String>`.
  ///
- /// If the number passed in isn't a '1' or '0' an error will be throw
+ /// If the number passed in isn't a `1` or `0` an error will be throw.
  ///
  /// # Example
  /// ```
@@ -192,12 +224,12 @@ pub fn decimal_to_hexadecimal(decimal: Vec<u8>) -> Result<Vec<String>, String>{
 
 }
 
-/// This function returns a hexadecimal that represents the string input
+/// This function returns a hexadecimal that represents the string input.
 ///
-/// Takes in a 'String' and will convert each character to its hexadecimal number.
-/// the output is returned ina 'Vec<String>'.
+/// Takes in a `String` and will convert each character to its hexadecimal number.
+/// the output is returned in a `Vec<String>`.
 /// 
-/// if the input string contains a charcter not found in the ascii table an error will be thrown.
+/// If the input string contains a character not found in the ascii table an error will be thrown.
 ///
 /// # Example
 /// ```
@@ -240,12 +272,12 @@ pub fn string_to_hexadecimal(text: String)  -> Result<Vec<String>, String> {
 
 }
 
-/// This function returns a hexadecimal number's string representation
+/// This function returns a hexadecimal number's string representation.
 /// 
-/// takes in a 'Vec<String>' and converts each element to a character then places them in a string.
+/// Takes in a `Vec<String>` and converts each element to a `char` then places them in a string.
 ///
-/// any string passed in via the parameters should be a valid hexadecimal number, if not a error will
-/// be returned in the 'Results' enum
+/// Any string passed in via the parameters should be a valid hexadecimal number, if not a error will
+/// be returned in the `Results` enum.
 ///
 /// # Example
 /// ```

@@ -11,6 +11,7 @@ Currently supported representations
 - Binary
 - Decimal
 - Characters
+- Hexadecimals
 
 Full Documentation for this library can be found [here](https://docs.rs/ascii_converter/0.1.1/ascii_converter/)
 
