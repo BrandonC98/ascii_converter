@@ -60,11 +60,11 @@
 /// assert_eq!(decimal_to_hexadecimal(input).unwrap(), expected);
 ///
 /// ```
-pub fn decimal_to_hexadecimal(decimal: Vec<u8>) -> Result<Vec<String>, String>{
+pub fn decimal_to_hexadecimal(dec_vec: Vec<u8>) -> Result<Vec<String>, String>{
 
     let mut vec = Vec::new();
 
-    for i in decimal.iter() {
+    for i in dec_vec.iter() {
 
 
         if i > &126 {
@@ -111,11 +111,11 @@ pub fn decimal_to_hexadecimal(decimal: Vec<u8>) -> Result<Vec<String>, String>{
 /// assert_eq!(hexadecimal_to_decimal(input).unwrap(), expected); 
 ///
 /// ```
- pub fn hexadecimal_to_decimal(hexadecimals: Vec<String>) -> Result<Vec<u8>, String>{
+ pub fn hexadecimal_to_decimal(hex_vec: Vec<String>) -> Result<Vec<u8>, String>{
 
     let mut decimal: Vec<u8> = Vec::new();
 
-    for i in hexadecimals.iter() {
+    for i in hex_vec.iter() {
 
         match hex_to_dec(i) {
             Ok(d) => (decimal.push(d)),
@@ -160,10 +160,10 @@ pub fn decimal_to_hexadecimal(decimal: Vec<u8>) -> Result<Vec<String>, String>{
  /// assert_eq!(hexadecimal_to_binary(input).unwrap(), expected); 
  ///
  /// ```
- pub fn hexadecimal_to_binary(hexadecimals: Vec<String>) -> Result<Vec<u32>, String>{
+ pub fn hexadecimal_to_binary(hex_vec: Vec<String>) -> Result<Vec<u32>, String>{
     let mut binary = Vec::new();
 
-    for i in hexadecimals.iter() {
+    for i in hex_vec.iter() {
 
         match hex_to_dec(i) {
             Ok(d) =>  binary.push(dec_to_bit(d)),
@@ -209,10 +209,10 @@ pub fn decimal_to_hexadecimal(decimal: Vec<u8>) -> Result<Vec<String>, String>{
  /// 
  /// ```
  ///
- pub fn binary_to_hexadecimal(bin: &Vec<u32>) -> Result<Vec<String>, String> {
+ pub fn binary_to_hexadecimal(bin_vec: &Vec<u32>) -> Result<Vec<String>, String> {
     let mut hexadecimal = Vec::new();
 
-    for i in bin.iter() {
+    for i in bin_vec.iter() {
         match bits_to_dec(i) {
             Ok(d) => hexadecimal.push(dec_to_hex(d )),
             Err(e) => return Err(e),
@@ -256,10 +256,10 @@ pub fn decimal_to_hexadecimal(decimal: Vec<u8>) -> Result<Vec<String>, String>{
 /// assert_eq!(string_to_hexadecimal(input).unwrap(), expected);
 ///
 /// ```
-pub fn string_to_hexadecimal(text: String)  -> Result<Vec<String>, String> {
+pub fn string_to_hexadecimal(txt: String)  -> Result<Vec<String>, String> {
     let mut hexadecimal = Vec::new();
 
-    for c in text.chars(){
+    for c in txt.chars(){
 
         if !c.is_ascii() {
             return Err("A character in the string isn't apart of the ascii table".to_string());
@@ -302,10 +302,10 @@ pub fn string_to_hexadecimal(text: String)  -> Result<Vec<String>, String> {
 /// 
 /// ```
 ///
-pub fn hexadecimal_to_string(hexadecimals: Vec<String>) -> Result<String, String> {
+pub fn hexadecimal_to_string(hex_vec: Vec<String>) -> Result<String, String> {
     let mut text = String::new();
 
-    for i in hexadecimals.iter() {
+    for i in hex_vec.iter() {
 
         match hex_to_dec(i) {
             Ok(dec) => text.push(dec as char),
@@ -337,11 +337,11 @@ pub fn hexadecimal_to_string(hexadecimals: Vec<String>) -> Result<String, String
 ///    
 /// assert_eq!(string_to_decimals("Hello world!").unwrap(), expected);
 /// ```
-pub fn string_to_decimals(text: &str) -> Result<Vec<u8>, String>{   
+pub fn string_to_decimals(txt: &str) -> Result<Vec<u8>, String>{   
 
     let mut vec = Vec::new();
 
-    for c in text.chars(){
+    for c in txt.chars(){
 
         if !c.is_ascii() {
             return Err("A character in the string isn't apart of the ascii table".to_string());
@@ -459,9 +459,9 @@ pub fn decimals_to_string(dec_vec: &Vec<u8>) -> Result<String, String>{
 /// 
 /// assert_eq!(string_to_binary("Hello world!").unwrap(), expected);
 /// ```
-pub fn string_to_binary(text: &str) -> Result<Vec<u32>, String>{
+pub fn string_to_binary(txt: &str) -> Result<Vec<u32>, String>{
 
-    let dec = string_to_decimals(text);
+    let dec = string_to_decimals(txt);
 
     let dec = match dec {
         Ok(new_dec_vec) => new_dec_vec,
@@ -492,9 +492,9 @@ pub fn string_to_binary(text: &str) -> Result<Vec<u32>, String>{
 /// 
 /// assert_eq!(binary_to_string(&input).unwrap(), "Hello world!".to_string());
 /// ```
- pub fn binary_to_string(bin: &Vec<u32>) -> Result<String, String>{
+pub fn binary_to_string(bin_vec: &Vec<u32>) -> Result<String, String>{
     
-     let dec = binary_to_decimal(&bin);
+     let dec = binary_to_decimal(&bin_vec);
 
      let dec = match dec {
          Ok(new_dec_vec) => new_dec_vec, 
@@ -521,7 +521,7 @@ pub fn string_to_binary(text: &str) -> Result<Vec<u32>, String>{
     let n = &format!("{:b}", dec);
     let n: u32  = n.trim().parse().unwrap();
     n
-}
+ }
 
  fn bits_to_dec(bit: &u32) -> Result<u8, String> {
 
@@ -532,7 +532,7 @@ pub fn string_to_binary(text: &str) -> Result<Vec<u32>, String>{
 
 }
 
-pub fn hex_to_dec(hex: &String) ->  Result<u8, String> {
+fn hex_to_dec(hex: &String) ->  Result<u8, String> {
 
     match u8::from_str_radix(&hex, 16){
         Ok(dec) => Ok(dec),
