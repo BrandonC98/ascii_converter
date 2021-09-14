@@ -1,6 +1,6 @@
 [package]
 name = "ascii_converter"
-version = "0.2.0"
+version = "0.2.1"
 authors = ["Brandon Campbell <BrandonCampbell98@hotmail.co.uk>"]
 edition = "2018"
 

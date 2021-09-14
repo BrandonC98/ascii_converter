@@ -19,11 +19,11 @@ Full Documentation for this library can be found [here](https://docs.rs/ascii_co
 
 ## Installation
 
-Add to this to your projects Cargo.toml:
+Add this to your projects Cargo.toml:
 
 ```toml
 [dependencies]
-ascii_converter = "0.2.0"
+ascii_converter = "0.2.1"
 ```
 
 ---
