@@ -13,7 +13,7 @@ Currently supported representations
 - Characters
 - Hexadecimals
 
-Full Documentation for this library can be found [here](https://docs.rs/ascii_converter/0.1.1/ascii_converter/)
+Full Documentation for this library can be found [here](https://docs.rs/ascii_converter)
 
 ---
 
@@ -23,7 +23,7 @@ Add to this to your projects Cargo.toml:
 
 ```toml
 [dependencies]
-ascii_converter = "0.1.0"
+ascii_converter = "0.2.0"
 ```
 
 ---
