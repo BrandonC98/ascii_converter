@@ -23,7 +23,7 @@ Add this to your projects Cargo.toml:
 
 ```toml
 [dependencies]
-ascii_converter = "0.2.1"
+ascii_converter = "0.2.2"
 ```
 
 ---
