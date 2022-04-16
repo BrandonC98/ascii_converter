@@ -1,6 +1,6 @@
 //! This project is a library for converting between different Ascii representations in the Rust language.
 //! This is made for Rust programs that need to convert an ascii value.
-//! This library has methods for converting any of the supported representations to any other.
+//! This library has methods for converting any of the supported representations to another.
 //! 
 //! ---
 //! 
