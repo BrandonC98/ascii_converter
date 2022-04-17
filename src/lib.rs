@@ -61,10 +61,10 @@ mod converter;
 ///    "21".to_string()
 /// ];
 ///
-/// assert_eq!(decimal_to_hexadecimal(input).unwrap(), expected);
+/// assert_eq!(decimal_to_hexadecimal(&input).unwrap(), expected);
 ///
 /// ```
-pub fn decimal_to_hexadecimal(dec_vec: Vec<u8>) -> Result<Vec<String>, String>{
+pub fn decimal_to_hexadecimal(dec_vec: &Vec<u8>) -> Result<Vec<String>, String>{
 
     let mut vec = Vec::new();
 
@@ -112,10 +112,10 @@ pub fn decimal_to_hexadecimal(dec_vec: Vec<u8>) -> Result<Vec<String>, String>{
 ///
 /// let expected = vec![72, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100, 33];
 ///
-/// assert_eq!(hexadecimal_to_decimal(input).unwrap(), expected); 
+/// assert_eq!(hexadecimal_to_decimal(&input).unwrap(), expected); 
 ///
 /// ```
- pub fn hexadecimal_to_decimal(hex_vec: Vec<String>) -> Result<Vec<u8>, String>{
+ pub fn hexadecimal_to_decimal(hex_vec: &Vec<String>) -> Result<Vec<u8>, String>{
 
     let mut decimal: Vec<u8> = Vec::new();
 
@@ -161,10 +161,10 @@ pub fn decimal_to_hexadecimal(dec_vec: Vec<u8>) -> Result<Vec<String>, String>{
  ///
  /// let expected = vec! [1001000, 1100101, 1101100, 1101100, 1101111, 100000, 1110111, 1101111, 1110010, 1101100, 1100100, 100001];
  /// 
- /// assert_eq!(hexadecimal_to_binary(input).unwrap(), expected); 
+ /// assert_eq!(hexadecimal_to_binary(&input).unwrap(), expected); 
  ///
  /// ```
- pub fn hexadecimal_to_binary(hex_vec: Vec<String>) -> Result<Vec<u32>, String>{
+ pub fn hexadecimal_to_binary(hex_vec: &Vec<String>) -> Result<Vec<u32>, String>{
     let mut binary = Vec::new();
 
     for i in hex_vec.iter() {
@@ -257,10 +257,10 @@ pub fn decimal_to_hexadecimal(dec_vec: Vec<u8>) -> Result<Vec<String>, String>{
 ///    "21".to_string()
 ///    ];
 /// 
-/// assert_eq!(string_to_hexadecimal(input).unwrap(), expected);
+/// assert_eq!(string_to_hexadecimal(&input).unwrap(), expected);
 ///
 /// ```
-pub fn string_to_hexadecimal(txt: String)  -> Result<Vec<String>, String> {
+pub fn string_to_hexadecimal(txt: &String)  -> Result<Vec<String>, String> {
     let mut hexadecimal = Vec::new();
 
     for c in txt.chars(){
@@ -302,11 +302,11 @@ pub fn string_to_hexadecimal(txt: String)  -> Result<Vec<String>, String> {
 ///    "21".to_string()
 ///    ];
 ///
-/// assert_eq!(hexadecimal_to_string(input).unwrap(), "Hello World!".to_string());
+/// assert_eq!(hexadecimal_to_string(&input).unwrap(), "Hello World!".to_string());
 /// 
 /// ```
 ///
-pub fn hexadecimal_to_string(hex_vec: Vec<String>) -> Result<String, String> {
+pub fn hexadecimal_to_string(hex_vec: &Vec<String>) -> Result<String, String> {
     let mut text = String::new();
 
     for i in hex_vec.iter() {
@@ -339,7 +339,7 @@ pub fn hexadecimal_to_string(hex_vec: Vec<String>) -> Result<String, String> {
 /// 
 /// let  expected = vec![72, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100, 33];
 ///    
-/// assert_eq!(string_to_decimals("Hello world!").unwrap(), expected);
+/// assert_eq!(string_to_decimals(&"Hello world!").unwrap(), expected);
 /// ```
 pub fn string_to_decimals(txt: &str) -> Result<Vec<u8>, String>{   
 
@@ -469,7 +469,7 @@ pub fn decimals_to_string(dec_vec: &Vec<u8>) -> Result<String, String>{
 /// 
 /// let expected = vec![1001000, 1100101, 1101100, 1101100, 1101111, 100000, 1110111, 1101111, 1110010, 1101100, 1100100, 100001];
 /// 
-/// assert_eq!(string_to_binary("Hello world!").unwrap(), expected);
+/// assert_eq!(string_to_binary(&"Hello world!").unwrap(), expected);
 /// ```
 pub fn string_to_binary(txt: &str) -> Result<Vec<u32>, String>{
 
@@ -566,7 +566,7 @@ mod tests{
             let input = vec!["68".to_string(), "65".to_string(), "6C".to_string(), "6C".to_string() , "6F".to_string()];
             let expected = "hello".to_string();
 
-            assert_eq!(hexadecimal_to_string(input), Ok(expected));
+            assert_eq!(hexadecimal_to_string(&input), Ok(expected));
 
         }
 
@@ -575,7 +575,7 @@ mod tests{
            
             let input = vec!["6rtdfg8".to_string(), "65".to_string(), "6C".to_string(), "6C".to_string() , "6F".to_string()];
 
-            assert_eq!(hexadecimal_to_string(input), Err("invalid digit found in string".to_string()));
+            assert_eq!(hexadecimal_to_string(&input), Err("invalid digit found in string".to_string()));
 
         }
 
@@ -589,7 +589,7 @@ mod tests{
             let input = "hello".to_string();
             let expected = vec!["68".to_string(), "65".to_string(), "6C".to_string(), "6C".to_string() , "6F".to_string()];
 
-            assert_eq!(string_to_hexadecimal(input), Ok(expected));
+            assert_eq!(string_to_hexadecimal(&input), Ok(expected));
 
         }
 
@@ -597,7 +597,7 @@ mod tests{
         fn string_to_hexadecimal_test_unhappy_path() {
             let input = "☢️".to_string();
 
-            assert_eq!(string_to_hexadecimal(input), Err("A character in the string isn't apart of the ascii table".to_string()));
+            assert_eq!(string_to_hexadecimal(&input), Err("A character in the string isn't apart of the ascii table".to_string()));
 
         }
 
@@ -636,7 +636,7 @@ mod tests{
             let input = vec!["68".to_string(), "65".to_string(), "6C".to_string(), "6C".to_string() , "6F".to_string()];
             let expected  = vec![1101000, 1100101, 1101100, 1101100, 1101111];
 
-            assert_eq!(hexadecimal_to_binary(input), Ok(expected));
+            assert_eq!(hexadecimal_to_binary(&input), Ok(expected));
 
         }
 
@@ -645,7 +645,7 @@ mod tests{
 
             let input = vec!["68".to_string(), "65z".to_string(), "6C".to_string(), "6C".to_string() , "6F".to_string()];
 
-            assert_eq!(hexadecimal_to_binary(input), Err("invalid digit found in string".to_string()));
+            assert_eq!(hexadecimal_to_binary(&input), Err("invalid digit found in string".to_string()));
 
         }
     }
@@ -660,7 +660,7 @@ mod tests{
             let input = vec!["68".to_string(), "65".to_string(), "6C".to_string(), "6C".to_string() , "6F".to_string()];
             let  expected = vec![104, 101, 108, 108, 111];
 
-            assert_eq!(hexadecimal_to_decimal(input), Ok(expected));
+            assert_eq!(hexadecimal_to_decimal(&input), Ok(expected));
 
         }
 
@@ -669,7 +669,7 @@ mod tests{
 
             let input = vec!["68".to_string(), "65sdf".to_string(), "6C".to_string(), "6C".to_string() , "6F".to_string()];
 
-            assert_eq!(hexadecimal_to_decimal(input), Err("invalid digit found in string".to_string()));
+            assert_eq!(hexadecimal_to_decimal(&input), Err("invalid digit found in string".to_string()));
 
         }
 
@@ -685,7 +685,7 @@ mod tests{
             let  input = vec![104, 101, 108, 108, 111];
             let expected = vec!["68".to_string(), "65".to_string(), "6C".to_string(), "6C".to_string() , "6F".to_string()];
 
-            assert_eq!(decimal_to_hexadecimal(input), Ok(expected));
+            assert_eq!(decimal_to_hexadecimal(&input), Ok(expected));
 
 
         }
@@ -694,7 +694,7 @@ mod tests{
         fn decimal_to_hexadecimal_test_unhappy_path(){
             let  input = vec![127];
             
-            assert_eq!(decimal_to_hexadecimal(input), Err("this function doesn't support values over 126".to_string()));
+            assert_eq!(decimal_to_hexadecimal(&input), Err("this function doesn't support values over 126".to_string()));
         }
 
         #[test]
