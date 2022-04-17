@@ -70,3 +70,49 @@ fn converter_new_with_binary() {
     assert_eq!(converter.binary, input);
 
 }
+
+#[test]
+fn converter_new_with_hexadecimal() {
+
+    let input = vec![
+        "68".to_string(),
+        "65".to_string(),
+        "6C".to_string(),
+        "6C".to_string(),
+        "6F".to_string(),
+    ];
+    let expected_binary = vec![1101000, 1100101, 1101100, 1101100, 1101111];
+    let converter = Converter::from(input.clone());
+    
+    let expected_decimal = vec![104, 101, 108, 108, 111];
+
+
+    assert_eq!(converter.charcters, "hello".to_string());
+    assert_eq!(converter.decimal, expected_decimal);
+    assert_eq!(converter.hexadecimal, input);
+    assert_eq!(converter.binary, expected_binary);
+
+}
+
+#[test]
+fn converter_new_with_decimal() {
+
+    let input = vec![104, 101, 108, 108, 111];
+    let expected_binary = vec![1101000, 1100101, 1101100, 1101100, 1101111];
+    let converter = Converter::from(input.clone());
+    
+    
+    let expected_hexadecimal = vec![
+        "68".to_string(),
+        "65".to_string(),
+        "6C".to_string(),
+        "6C".to_string(),
+        "6F".to_string(),
+    ];
+    
+    assert_eq!(converter.charcters, "hello".to_string());
+    assert_eq!(converter.decimal, input);
+    assert_eq!(converter.hexadecimal, expected_hexadecimal);
+    assert_eq!(converter.binary, expected_binary);
+
+}
