@@ -2,7 +2,7 @@
 use crate::*;
 
 struct Converter {
-    pub binary: Vec<u32>,
+    binary: Vec<u32>,
     hexadecimal: Vec<String>,
     decimal: Vec<u8>,
     charcters: String,
@@ -20,6 +20,7 @@ impl Converter {
         }
     }
 }
+
 #[test]
 fn converter_new_with_binary() {
     let input = vec![1101000, 1100101, 1101100, 1101100, 1101111];
