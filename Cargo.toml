@@ -12,5 +12,3 @@ repository  = "https://github.com/BrandonC98/ascii_converter"
 documentation = "https://docs.rs/ascii_converter"
 readme = "README.md"
 license = "MIT"
-
-q
