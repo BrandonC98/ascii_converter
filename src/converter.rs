@@ -40,13 +40,49 @@ impl From<Vec<u8>> for Converter {
     fn from(value: Vec<u8>) -> Self {
     let dec = value;
 
-    Self {
-        decimal: dec.clone(),
-        binary: decimals_to_binary(&dec).unwrap(),
-        hexadecimal: decimal_to_hexadecimal(&dec).unwrap(),
-        charcters: decimals_to_string(&dec).unwrap(),
+        Self {
+            decimal: dec.clone(),
+            binary: decimals_to_binary(&dec).unwrap(),
+            hexadecimal: decimal_to_hexadecimal(&dec).unwrap(),
+            charcters: decimals_to_string(&dec).unwrap(),
+        }
     }
 }
+
+impl From<String> for Converter {
+    
+    fn from(value: String) -> Self {
+        let chars = value;
+
+        Self {
+            charcters: chars.clone(),
+            binary: string_to_binary(&chars).unwrap(),
+            hexadecimal: string_to_hexadecimal(&chars).unwrap(),
+            decimal: string_to_decimals(&chars).unwrap(),
+        }
+    }
+}
+
+#[test]
+fn converter_new_with_characters() {
+    let expected_binary = vec![1101000, 1100101, 1101100, 1101100, 1101111];
+    let converter = Converter::from("hello".to_string());
+    
+    let expected_decimal = vec![104, 101, 108, 108, 111];
+
+    let expected_hexadecimal = vec![
+        "68".to_string(),
+        "65".to_string(),
+        "6C".to_string(),
+        "6C".to_string(),
+        "6F".to_string(),
+    ];
+
+    assert_eq!(converter.charcters, "hello".to_string());
+    assert_eq!(converter.decimal, expected_decimal);
+    assert_eq!(converter.hexadecimal, expected_hexadecimal);
+    assert_eq!(converter.binary, expected_binary);
+
 }
 
 #[test]
