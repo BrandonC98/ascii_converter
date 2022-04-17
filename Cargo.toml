@@ -5,7 +5,7 @@ authors = ["Brandon Campbell <BrandonCampbell98@hotmail.co.uk>"]
 edition = "2018"
 
 description  = "A library for converting  between different ascii representations"
-keywords = ["ascii", "convert", "binary", "hexadecimal"]
+keywords = ["ascii", "converter", "binary", "hexadecimal"]
 exclude = [".vscode/*"]
 homepage  =  "https://github.com/BrandonC98/ascii_converter"
 repository  = "https://github.com/BrandonC98/ascii_converter"
@@ -13,3 +13,4 @@ documentation = "https://docs.rs/ascii_converter"
 readme = "README.md"
 license = "MIT"
 
+q
