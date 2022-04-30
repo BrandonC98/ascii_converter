@@ -2,10 +2,14 @@
 use crate::*;
 
 struct Converter {
-    binary: Vec<u32>,
+    pub binary: Vec<u32>,
     hexadecimal: Vec<String>,
     decimal: Vec<u8>,
     charcters: String,
+}
+
+impl Converter {
+    
 }
 
 impl From<Vec<u32>> for Converter {
