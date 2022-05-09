@@ -436,11 +436,19 @@ pub fn decimals_to_string(dec_vec: &Vec<u8>) -> Result<String, String>{
 
     for d in dec_vec.iter(){
 
-        if !(d >=  &32 && d <= &126) {
+        if *d == 1 {
+            text.push('1');
+        }
+        else if *d == 0 {
+            text.push('0');
+        }
+        else if !(d >=  &32 && d <= &126) {
             return Err("the number is outside the ascii range".to_string());
+        } else {
+            text.push(*d as char);
+            
         }
 
-        text.push(*d as char);
     }
 
     Ok(text)
@@ -821,6 +829,21 @@ mod tests{
             assert_eq!(decimals_to_string(&input), Err("the number is outside the ascii range".to_string()));
         }
 
+        #[test]
+        fn decimals_to_string_test_happy_path_zero(){
+            
+            let  input = vec![0];
+            
+            assert_eq!(decimals_to_string(&input), Ok("0".to_string()));
+        }
+
+        #[test]
+        fn decimals_to_string_test_happy_path_one(){
+            
+            let  input = vec![1];
+            
+            assert_eq!(decimals_to_string(&input), Ok("1".to_string()));
+        }
     }
     
     mod binary_to_string_tests{
@@ -846,7 +869,7 @@ mod tests{
         #[test]
         fn binary_to_string_test_unhappy_path_out_of_range(){
             
-            let  input = vec![1];
+            let  input = vec![11111111];
             
             assert_eq!(binary_to_string(&input), Err("the number is outside the ascii range".to_string()));
         }
