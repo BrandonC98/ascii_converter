@@ -440,13 +440,7 @@ pub fn decimals_to_string(dec_vec: &Vec<u8>) -> Result<String, String>{
 
     for d in dec_vec.iter(){
 
-        if *d == 1 {
-            text.push('1');
-        }
-        else if *d == 0 {
-            text.push('0');
-        }
-        else if !(d >=  &32 && d <= &126) {
+        if !(d >=  &32 && d <= &126) {
             return Err("the number is outside the ascii range".to_string());
         } else {
             text.push(*d as char);
@@ -838,7 +832,7 @@ mod tests{
             
             let  input = vec![0];
             
-            assert_eq!(decimals_to_string(&input), Ok("0".to_string()));
+            assert_eq!(decimals_to_string(&input), Err("the number is outside the ascii range".to_string()));
         }
 
         #[test]
@@ -846,7 +840,7 @@ mod tests{
             
             let  input = vec![1];
             
-            assert_eq!(decimals_to_string(&input), Ok("1".to_string()));
+            assert_eq!(decimals_to_string(&input), Err("the number is outside the ascii range".to_string()));
         }
     }
     
