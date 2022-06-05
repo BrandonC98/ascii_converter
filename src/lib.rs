@@ -29,10 +29,6 @@
 //! };
 //! ```
 
-//## Modules ##//
-mod converter;
-/////////////////
-
 /// This function is passed decimal numbers and it then returns the hexadecimal representation. 
 ///
 /// Takes in a `Vec<u8>` where each value is a ascii values decimal number then will convert that to hexadecimal numbers which are returned as `Vec<String>`.
